@@ -25,7 +25,7 @@ export default function RegisterPage() {
 
       setTimeout(() => navigate("/login"), 3000);
     } catch (error) {
-      alert("Registration unsuccessful. Check entered details.");
+      alert(error.response.data.error);
     }
   }
 
@@ -37,7 +37,6 @@ export default function RegisterPage() {
         <br />
         <input
           id="usernameInput"
-          className="margin-bot-10"
           type="text"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
@@ -47,7 +46,6 @@ export default function RegisterPage() {
         <br />
         <input
           id="passwordInput"
-          className="margin-bot-10"
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}

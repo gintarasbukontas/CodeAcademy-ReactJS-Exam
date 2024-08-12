@@ -9,7 +9,7 @@ const attendeeSchema = Joi.object({
       tlds: { allow: ["com", "net", "lt", "ru"] },
     })
     .required(),
-  age: Joi.number().integer().min(1).max(120).required(),
+  age: Joi.number().integer().min(0).max(120).required(),
 });
 
 export function validateAttendee(req, res, next) {

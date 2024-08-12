@@ -29,7 +29,7 @@ export default function LoginPage() {
       localStorage.setItem("token", response.data.token);
       navigate("/main");
     } catch (error) {
-      alert("Login unsuccessful. Check Login details.");
+      alert(error.response.data.error);
     }
   }
 
@@ -40,7 +40,6 @@ export default function LoginPage() {
         <label htmlFor="usernameInput">Username</label>
         <br />
         <input
-          className="margin-bot-10"
           id="usernameInput"
           type="text"
           value={username}
@@ -51,7 +50,6 @@ export default function LoginPage() {
         <br />
         <input
           id="passwordInput"
-          className="margin-bot-10"
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}

@@ -37,7 +37,7 @@ export async function updateAttendee(req, res) {
     const attendee = await Attendee.findById(id);
 
     if (!attendee) {
-      res.status(404).json({ message: "Attendee doesn't exist" });
+      res.status(404).json({ error: "Attendee doesn't exist" });
       return;
     }
 
@@ -61,7 +61,7 @@ export async function deleteAttendee(req, res) {
     const deletedAttendee = await Attendee.findByIdAndDelete(id);
 
     if (!deletedAttendee) {
-      res.status(404).json({ message: "Attendee doesn't exist" });
+      res.status(404).json({ error: "Attendee doesn't exist" });
       return;
     }
 

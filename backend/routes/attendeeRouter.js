@@ -11,7 +11,7 @@ import { validateToken } from "../middlewares/validateToken.js";
 
 const router = express.Router();
 
-router.get("/attendees", getAttendees);
+router.get("/attendees", validateToken, getAttendees);
 
 router.post("/attendees", validateAttendee, createNewAttendee);
 

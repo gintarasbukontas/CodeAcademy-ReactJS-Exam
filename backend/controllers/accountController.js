@@ -12,7 +12,7 @@ export async function registerNewAccount(req, res) {
     const existingAccount = await Account.find({ username: username });
 
     if (existingAccount.length > 0) {
-      res.status(400).json({ message: "Username already taken" });
+      res.status(400).json({ error: "Username already taken" });
       return;
     }
 
@@ -39,7 +39,7 @@ export async function loginAccount(req, res) {
     const account = await Account.findOne({ username });
 
     if (!account) {
-      return res.status(400).json({ err: "Incorrect username or password" });
+      return res.status(400).json({ error: "Incorrect username or password" });
     }
 
     const isPasswordCorrect = await bcrypt.compare(password, account.password);
@@ -55,7 +55,7 @@ export async function loginAccount(req, res) {
 
       res.json({ token });
     } else {
-      res.status(400).json({ message: "Incorrect username or password" });
+      res.status(400).json({ error: "Incorrect username or password" });
     }
   } catch (error) {
     res.status(500).json({ error: "Something went wrong" });

@@ -3,11 +3,16 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Attendee from "../../components/Attendee/Attendee";
 import styles from "./MainPage.module.css";
+import ModalAddAttendee from "../../components/ModalAddAttendee/ModalAddAttendee";
+import ModalUpdateAttendee from "../../components/ModalUpdateAttendee/ModalUpdateAttendee";
 
 const API_HOST = import.meta.env.VITE_API_HOST;
 
 export default function MainPage() {
   const [attendees, setAttendees] = useState([]);
+  const [isAddModalOpen, setIsAddModalOpen] = useState(false);
+  const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false);
+  const [currentAttendee, setCurrentAttendee] = useState(null);
 
   const navigate = useNavigate();
 
@@ -29,6 +34,20 @@ export default function MainPage() {
       });
   }
 
+  function toggleAddModal() {
+    setIsAddModalOpen(!isAddModalOpen);
+  }
+
+  function openUpdateModal(attendee) {
+    setCurrentAttendee(attendee);
+    setIsUpdateModalOpen(true);
+  }
+
+  function closeUpdateModal() {
+    setCurrentAttendee(null);
+    setIsUpdateModalOpen(false);
+  }
+
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (!token) {
@@ -41,7 +60,26 @@ export default function MainPage() {
   return (
     <div>
       <h1 style={{ textAlign: "center" }}>List of Attendees</h1>
-      <button className={styles.addNew}>Add New Attendee</button>
+      {isAddModalOpen && (
+        <ModalAddAttendee
+          isAddModalOpen={isAddModalOpen}
+          setIsAddModalOpen={setIsAddModalOpen}
+          toggleAddModal={toggleAddModal}
+          refetchData={getAttendees}
+        />
+      )}
+      {isUpdateModalOpen && currentAttendee && (
+        <ModalUpdateAttendee
+          isUpdateModalOpen={isUpdateModalOpen}
+          setIsUpdateModalOpen={closeUpdateModal}
+          refetchData={getAttendees}
+          attendeeData={currentAttendee}
+        />
+      )}
+
+      <button className={styles.addNew} onClick={toggleAddModal}>
+        Add New Attendee
+      </button>
       <table>
         <thead>
           <tr>
@@ -59,11 +97,14 @@ export default function MainPage() {
               key={attendee._id}
               attendeeData={attendee}
               refetchData={getAttendees}
+              openUpdateModal={openUpdateModal}
             />
           ))}
         </tbody>
       </table>
-      <button className={styles.addNew2}>+</button>
+      <button className={styles.addNew2} onClick={toggleAddModal}>
+        +
+      </button>
     </div>
   );
 }
