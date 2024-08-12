@@ -83,6 +83,7 @@ export default function MainPage() {
       <table>
         <thead>
           <tr>
+            <th>#</th>
             <th>First Name</th>
             <th>Last Name</th>
             <th>Email</th>
@@ -92,12 +93,13 @@ export default function MainPage() {
           </tr>
         </thead>
         <tbody>
-          {attendees.map((attendee) => (
+          {attendees.map((attendee, x) => (
             <Attendee
               key={attendee._id}
               attendeeData={attendee}
               refetchData={getAttendees}
               openUpdateModal={openUpdateModal}
+              quantity={x}
             />
           ))}
         </tbody>

@@ -6,6 +6,7 @@ export default function Attendee({
   attendeeData,
   refetchData,
   openUpdateModal,
+  quantity,
 }) {
   async function handleDelete() {
     const shouldDelete = confirm(`Are you sure? This can't be undone.`);
@@ -23,6 +24,7 @@ export default function Attendee({
   return (
     <>
       <tr>
+        <td>{quantity + 1}</td>
         <td>{attendeeData.firstName}</td>
         <td>{attendeeData.lastName}</td>
         <td>{attendeeData.email}</td>
