@@ -43,9 +43,12 @@ export default function ModalAddAttendee({
 
   useEffect(() => {
     if (isAddModalOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "auto";
+      if (isAddModalOpen) {
+        document.body.style.overflow = isAddModalOpen ? "hidden" : "auto";
+        return () => {
+          document.body.style.overflow = "auto";
+        };
+      }
     }
   }, [isAddModalOpen]);
 

@@ -38,9 +38,10 @@ export default function ModalUpdateAttendee({
 
   useEffect(() => {
     if (isUpdateModalOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "auto";
+      document.body.style.overflow = isUpdateModalOpen ? "hidden" : "auto";
+      return () => {
+        document.body.style.overflow = "auto";
+      };
     }
   }, [isUpdateModalOpen]);
 

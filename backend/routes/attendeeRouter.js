@@ -13,10 +13,16 @@ const router = express.Router();
 
 router.get("/attendees", validateToken, getAttendees);
 
-router.post("/attendees", validateAttendee, createNewAttendee);
+router.post("/attendees", validateToken, validateAttendee, createNewAttendee);
 
-router.put("/attendees/:id", validateIdParam, validateAttendee, updateAttendee);
+router.put(
+  "/attendees/:id",
+  validateToken,
+  validateIdParam,
+  validateAttendee,
+  updateAttendee
+);
 
-router.delete("/attendees/:id", validateIdParam, deleteAttendee);
+router.delete("/attendees/:id", validateToken, validateIdParam, deleteAttendee);
 
 export default router;
