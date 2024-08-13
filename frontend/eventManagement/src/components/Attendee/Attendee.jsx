@@ -13,7 +13,11 @@ export default function Attendee({
 
     if (shouldDelete) {
       try {
-        await axios.delete(`${API_HOST}/attendees/${attendeeData._id}`);
+        await axios.delete(`${API_HOST}/attendees/${attendeeData._id}`, {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        });
         refetchData();
       } catch (error) {
         alert(error.response.data.error);

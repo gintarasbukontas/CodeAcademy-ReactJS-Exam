@@ -54,9 +54,14 @@ export default function RegisterPage() {
         <button type="submit">Register</button>
       </form>
       <p>
-        Already have an account? <a href="/login">Login now</a>
+        Already have an account? <a href="/login">Login now!</a>
       </p>
-      {registerSuccessful && <p>Registration successful</p>}
+      {registerSuccessful && (
+        <p style={{ color: "limegreen" }}>
+          Registration successful. You will be redirected to the Login Page
+          shortly.
+        </p>
+      )}
     </div>
   );
 }

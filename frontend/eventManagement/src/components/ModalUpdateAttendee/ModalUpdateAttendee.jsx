@@ -26,7 +26,15 @@ export default function ModalUpdateAttendee({
     };
 
     try {
-      await axios.put(`${API_HOST}/attendees/${attendeeData._id}`, requestBody);
+      await axios.put(
+        `${API_HOST}/attendees/${attendeeData._id}`,
+        requestBody,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
+      );
 
       alert("Updated successfully!");
       setIsUpdateModalOpen(!isUpdateModalOpen);

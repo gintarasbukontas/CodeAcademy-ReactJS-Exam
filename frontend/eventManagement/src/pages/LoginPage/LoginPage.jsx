@@ -27,6 +27,7 @@ export default function LoginPage() {
     try {
       const response = await axios.post(`${API_HOST}/login`, body);
       localStorage.setItem("token", response.data.token);
+
       navigate("/main");
     } catch (error) {
       alert(error.response.data.error);
@@ -58,7 +59,7 @@ export default function LoginPage() {
         <button type="submit">Login</button>
       </form>
       <p>
-        Don&apos;t have an account? <a href="/register">Register now</a>
+        Don&apos;t have an account? <a href="/register">Register now!</a>
       </p>
     </div>
   );

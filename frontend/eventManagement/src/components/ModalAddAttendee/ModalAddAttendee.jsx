@@ -26,7 +26,11 @@ export default function ModalAddAttendee({
     };
 
     try {
-      await axios.post(`${API_HOST}/attendees`, requestBody);
+      await axios.post(`${API_HOST}/attendees`, requestBody, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      });
 
       setFirstName("");
       setLastName("");

@@ -13,6 +13,6 @@ export async function validateToken(req, res, next) {
 
     next();
   } catch (error) {
-    res.status(403).json({ message: "Unauthorized access" });
+    res.status(403).json({ error: error.message });
   }
 }

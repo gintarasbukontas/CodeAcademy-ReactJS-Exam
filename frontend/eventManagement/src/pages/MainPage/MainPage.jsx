@@ -20,7 +20,7 @@ export default function MainPage() {
     axios
       .get(`${API_HOST}/attendees`, {
         headers: {
-          Authorization: `bearer ${localStorage.getItem("token")}`,
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       })
       .then((response) => setAttendees(response.data))
