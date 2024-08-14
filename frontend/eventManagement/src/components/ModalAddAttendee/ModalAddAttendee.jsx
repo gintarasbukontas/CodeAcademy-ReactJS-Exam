@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import reactDom from "react-dom";
 import style from "./ModalAddAttendee.module.css";
 
 const API_HOST = import.meta.env.VITE_API_HOST;
@@ -56,7 +57,7 @@ export default function ModalAddAttendee({
     }
   }, [isAddModalOpen]);
 
-  return (
+  return reactDom.createPortal(
     <div>
       {isAddModalOpen && (
         <div className={style.modal}>
@@ -108,6 +109,7 @@ export default function ModalAddAttendee({
           </div>
         </div>
       )}
-    </div>
+    </div>,
+    document.body
   );
 }

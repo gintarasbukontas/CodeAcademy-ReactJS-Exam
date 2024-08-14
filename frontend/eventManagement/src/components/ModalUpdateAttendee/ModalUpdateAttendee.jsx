@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import reactDom from "react-dom";
 import style from "./ModalUpdateAttendee.module.css";
 
 const API_HOST = import.meta.env.VITE_API_HOST;
@@ -57,7 +58,7 @@ export default function ModalUpdateAttendee({
     setIsUpdateModalOpen(!isUpdateModalOpen);
   }
 
-  return (
+  return reactDom.createPortal(
     <div>
       {isUpdateModalOpen && (
         <div className={style.modal}>
@@ -109,6 +110,7 @@ export default function ModalUpdateAttendee({
           </div>
         </div>
       )}
-    </div>
+    </div>,
+    document.body
   );
 }
