@@ -3,8 +3,8 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Attendee from "../../components/Attendee/Attendee";
 import styles from "./MainPage.module.css";
-import ModalAddAttendee from "../../components/ModalAddAttendee/ModalAddAttendee";
-import ModalUpdateAttendee from "../../components/ModalUpdateAttendee/ModalUpdateAttendee";
+import AddAttendee from "../../components/AddAttendee/AddAttendee";
+import UpdateAttendee from "../../components/UpdateAttendee/UpdateAttendee";
 
 const API_HOST = import.meta.env.VITE_API_HOST;
 
@@ -61,7 +61,7 @@ export default function MainPage() {
     <div>
       <h1 style={{ textAlign: "center" }}>List of Attendees</h1>
       {isAddModalOpen && (
-        <ModalAddAttendee
+        <AddAttendee
           isAddModalOpen={isAddModalOpen}
           setIsAddModalOpen={setIsAddModalOpen}
           toggleAddModal={toggleAddModal}
@@ -69,7 +69,7 @@ export default function MainPage() {
         />
       )}
       {isUpdateModalOpen && currentAttendee && (
-        <ModalUpdateAttendee
+        <UpdateAttendee
           isUpdateModalOpen={isUpdateModalOpen}
           setIsUpdateModalOpen={closeUpdateModal}
           refetchData={getAttendees}

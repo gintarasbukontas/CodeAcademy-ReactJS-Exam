@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import AccountForm from "../../components/AccountForm/AccountForm";
 
 const API_HOST = import.meta.env.VITE_API_HOST;
 
@@ -37,27 +38,13 @@ export default function LoginPage() {
   return (
     <div style={{ textAlign: "center" }}>
       <h1>Login</h1>
-      <form onSubmit={handleLogin}>
-        <label htmlFor="usernameInput">Username</label>
-        <br />
-        <input
-          id="usernameInput"
-          type="text"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-        />
-        <br />
-        <label htmlFor="passwordInput">Password</label>
-        <br />
-        <input
-          id="passwordInput"
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <br />
-        <button type="submit">Login</button>
-      </form>
+      <AccountForm
+        onSubmit={handleLogin}
+        username={username}
+        setUsername={setUsername}
+        password={password}
+        setPassword={setPassword}
+      />
       <p>
         Don&apos;t have an account? <a href="/register">Register now!</a>
       </p>
