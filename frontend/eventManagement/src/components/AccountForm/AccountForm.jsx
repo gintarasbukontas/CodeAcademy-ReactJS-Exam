@@ -4,6 +4,7 @@ export default function AccountForm({
   setUsername,
   password,
   setPassword,
+  action,
 }) {
   return (
     <form onSubmit={onSubmit}>
@@ -25,7 +26,7 @@ export default function AccountForm({
         onChange={(e) => setPassword(e.target.value)}
       />
       <br />
-      <button type="submit">Login</button>
+      <button type="submit">{action}</button>
     </form>
   );
 }

@@ -44,6 +44,7 @@ export default function LoginPage() {
         setUsername={setUsername}
         password={password}
         setPassword={setPassword}
+        action={"Login"}
       />
       <p>
         Don&apos;t have an account? <a href="/register">Register now!</a>

@@ -39,6 +39,7 @@ export default function RegisterPage() {
         setUsername={setUsername}
         password={password}
         setPassword={setPassword}
+        action={"Register"}
       />
       <p>
         Already have an account? <a href="/login">Login now!</a>
